@@ -1,0 +1,48 @@
+{
+  "name": "facebook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "javascript-obfuscator src --options-preset high-obfuscation --compact true --dead-code-injection true --string-array-encoding rc4 --split-strings true --self-defending true --output dist",
+    "start": "pm2 start ecosystem.config.js",
+    "start-api": "pm2 start dist/app.js -i max",
+    "start-cron": "pm2 start dist/cron/updateToken.js ",
+    "start-video-worker": "pm2 start dist/worker/video/.",
+    "start-video-workers": "pm2 start dist/worker/video/. -i max",
+    "start-account-worker": "pm2 start dist/worker/account/.",
+    "build-player": "javascript-obfuscator static/player_src.js --options-preset high-obfuscation --compact true --dead-code-injection true --string-array true --string-array-encoding rc4 --split-strings true  --rename-properties-mode safe --output static/player.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "quangng",
+  "license": "ISC",
+  "dependencies": {
+    "async-redis": "^2.0.0",
+    "base-64": "^1.0.0",
+    "bee-queue": "^1.4.0",
+    "bull": "^3.22.7",
+    "bullmq": "^1.32.0",
+    "cron": "^1.8.2",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "form-data": "^4.0.0",
+    "got": "^11.8.2",
+    "mongoose": "^5.12.13",
+    "mpd-parser": "^0.19.0",
+    "pretty-bytes": "^5.6.0",
+    "querystring": "^0.2.1",
+    "random-useragent": "^0.5.0",
+    "redis": "^3.1.2",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "select-random-file": "^1.2.0",
+    "split-file": "^2.2.2",
+    "stream-to-promise": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.12",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  }
+}
